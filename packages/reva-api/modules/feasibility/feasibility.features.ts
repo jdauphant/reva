@@ -151,7 +151,11 @@ export const getFeasibilityByCandidacyid = ({
   candidacyId,
 }: {
   candidacyId: string;
-}) => prismaClient.feasibility.findFirst({ where: { candidacyId } });
+}) =>
+  prismaClient.feasibility.findFirst({
+    where: { candidacyId },
+    include: { certificationAuthority: true },
+  });
 
 export const getFileNameAndUrl = async ({
   candidacyId,
@@ -393,6 +397,9 @@ export const getFeasibilityById = async ({
 }) => {
   const feasibility = await prismaClient.feasibility.findUnique({
     where: { id: feasibilityId },
+    include: {
+      certificationAuthority: true,
+    },
   });
 
   const authorized = await canManageFeasibility({

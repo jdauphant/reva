@@ -71,3 +71,10 @@ decisionComment =
 decisionSentAt : SelectionSet (Maybe Data.Scalar.Timestamp) Admin.Object.Feasibility
 decisionSentAt =
     Object.selectionForField "(Maybe Data.Scalar.Timestamp)" "decisionSentAt" [] (Data.Scalar.codecs |> Admin.Scalar.unwrapCodecs |> .codecTimestamp |> .decoder |> Decode.nullable)
+
+
+certificationAuthority :
+    SelectionSet decodesTo Admin.Object.CertificationAuthority
+    -> SelectionSet (Maybe decodesTo) Admin.Object.Feasibility
+certificationAuthority object____ =
+    Object.selectionForCompositeField "certificationAuthority" [] object____ (Basics.identity >> Decode.nullable)

@@ -93,7 +93,7 @@ type alias Candidacy =
     , statuses : List CandidacyStatus
     , createdAt : Time.Posix
     , reorientationReason : Maybe ReorientationReason
-    , certificationAuthority : Maybe CertificationAuthority
+    , certificationAuthorities : List CertificationAuthority
     , feasibility : Maybe Feasibility
     , financeModule : FinanceModule
     }

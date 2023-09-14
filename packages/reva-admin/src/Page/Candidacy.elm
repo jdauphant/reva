@@ -323,8 +323,9 @@ viewFeasibilitySent context candidacy feasibility =
         , viewFileLink context (Tuple.first feasibilityFileNameAndUrl) (Tuple.second feasibilityFileNameAndUrl)
         , viewFileLink context (Tuple.first documentaryProofFileNameAndUrl) (Tuple.second documentaryProofFileNameAndUrl)
         , viewFileLink context (Tuple.first certificateOfAttendancefFileNameAndUrl) (Tuple.second certificateOfAttendancefFileNameAndUrl)
-        , View.Candidate.viewCertificationAuthority
-            candidacy.certificationAuthority
+        , div [] <|
+            List.map View.Candidate.viewCertificationAuthority
+                candidacy.certificationAuthorities
         , View.Feasibility.Decision.view feasibility
         ]
     ]
@@ -640,7 +641,7 @@ updateTab context tab ( model, cmd ) =
                         , onRedirect = pushUrl <| candidacyTab Profile
                         , onValidate = \_ _ -> Ok ()
                         , status =
-                            if candidacy.feasibility /= Nothing || candidacy.certificationAuthority == Nothing then
+                            if candidacy.feasibility /= Nothing || List.isEmpty candidacy.certificationAuthorities then
                                 Form.ReadOnly
 
                             else

@@ -9,6 +9,7 @@ keys =
     { feasibilityFile = "feasibilityFile"
     , documentaryProofFile = "documentaryProofFile"
     , certificateOfAttendanceFile = "certificateOfAttendanceFile"
+    , certificationAuthorityId = "certificationAuthorityId"
     , decision = "decision"
     , reason = "reason"
     }

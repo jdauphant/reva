@@ -2,7 +2,7 @@ import { FeasibilityStatus } from "@prisma/client";
 
 import {
   getCandidacyById,
-  getCertificationAuthority,
+  getCertificationAuthorities,
   getFeasibilities,
   getFeasibilityByCandidacyid,
   getFeasibilityById,
@@ -14,10 +14,10 @@ import {
 
 export const feasibilityResolvers = {
   Candidacy: {
-    certificationAuthority: (parent: {
+    certificationAuthorities: (parent: {
       certificationId: string;
       departmentId: string;
-    }) => getCertificationAuthority(parent),
+    }) => getCertificationAuthorities(parent),
     feasibility: ({ id: candidacyId }: { id: string }) =>
       getFeasibilityByCandidacyid({ candidacyId }),
   },
